@@ -1,17 +1,19 @@
 import React from "react";
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet } from "react-router-dom";
 import { loadState } from "../config/store";
 
 const UserLeyaut = () => {
-  const users = loadState("users");
-  if (!users) return <Navigate to={"/"} replace />;
   return (
     <div className="container">
       <div>
-        <Link to="/users">Profile</Link>
-        <Link to="/users/addres">addres </Link>
+        <div>
+          <NavLink to="/users/login">Kirish</NavLink>
+          <NavLink to="/users/regerter">Ro’yxatdan o’tish </NavLink>
+        </div>
+        <div>
+          <Outlet />
+        </div>
       </div>
-      <Outlet />
     </div>
   );
 };

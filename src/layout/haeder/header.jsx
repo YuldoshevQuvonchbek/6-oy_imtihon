@@ -18,10 +18,11 @@ export const Header = () => {
               <LikeIcons />
               <p className=" text-sm  font-medium">Yoqtirganlar</p>
             </div>
-            <div className=" flex items-center  gap-2">
+
+            <Link to="/users/login" className=" flex items-center  gap-2">
               <UserIcon />
               <p className=" text-sm  font-medium">Akkaunt</p>
-            </div>
+            </Link>
             <Button variant={"primary"} children={"E'lonlarni joylashtirish"} />
           </div>
         </div>
