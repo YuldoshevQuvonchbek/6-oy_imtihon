@@ -1,6 +1,6 @@
 import React from "react";
 
 const Login = () => {
-  return <div>Dddres</div>;
+  return <div></div>;
 };
 export default Login;
