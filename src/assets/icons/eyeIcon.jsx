@@ -3,8 +3,8 @@ import React from "react";
 const EyeIcon = () => {
   return (
     <svg
-      width={17.0}
-      height={10.0}
+      width={20.0}
+      height={21.0}
       viewBox="0 0 17 10"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
