@@ -32,7 +32,14 @@ export const Header = () => {
               </Link>
             )}
 
-            <Button variant={"primary"} children={"E'lonlarni joylashtirish"} />
+            {user ? (
+              <Link to="/CreateProduct">
+                <Button
+                  variant={"primary"}
+                  children={"E'lonlarni joylashtirish"}
+                />
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>
