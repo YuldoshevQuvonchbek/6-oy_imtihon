@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+import SoatComponent from "../../components/soat";
 const CreateProduct = () => {
   const notify = () => toast.success("Malumot saqlandi");
   const naviget = useNavigate();
@@ -21,6 +21,8 @@ const CreateProduct = () => {
       },
     });
   };
+  const soat = SoatComponent();
+  const time = soat.props.children.props.children;
 
   const { mutate } = usePostProducts(product);
   return (
@@ -100,7 +102,7 @@ const CreateProduct = () => {
             <h2 className="font-medium text-xl mb-5">
               Siz bilan bog’lanish uchun
             </h2>
-            <div className=" flex flex-col">
+            <div className=" relative flex flex-col">
               <label className="text-xs text-argent mb-2">Narx</label>
               <input
                 {...register("price")}
@@ -136,6 +138,16 @@ const CreateProduct = () => {
                 placeholder=""
                 type="text"
               />
+              <div className=" absolute left-[-1500px] ">
+                <label className="text-xs text-argent mb-2">Vaq</label>
+                <input
+                  {...register("time")}
+                  value={time}
+                  className=" pl-4 mb-6 py-[14px] rounded-md bg-Secondary"
+                  placeholder=""
+                  type="text"
+                />
+              </div>
             </div>
           </div>
           <div>

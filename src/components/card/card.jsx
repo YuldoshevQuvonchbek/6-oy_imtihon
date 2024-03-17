@@ -16,7 +16,9 @@ const Card = ({ img, title, price, location, category, id, time }) => {
         <p className="text-xl font-bold mb-2 text-vivaldiRed">{price} UYE</p>
         <p className="text-sm text-argent font-normal mb-3">{location}</p>
         <div className=" flex  justify-between mb-[14px]  items-center">
-          <p className="text-sm text-argent font-normal ">{time}</p>
+          <p className="text-sm text-argent font-normal ">
+            Bugun {time.length > 5 ? time.slice(0, 5) : time}
+          </p>
           <div>
             <CartLike />
           </div>

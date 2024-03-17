@@ -6,6 +6,7 @@ import { Useregester } from "./servese/mutation/useregester";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/button/button";
+
 const img = (url) => /\.(jpeg|jpg|gif|png|svg)$/i.test(url);
 
 const schema = z.object({
@@ -46,7 +47,6 @@ const Regerter = () => {
   return (
     <form onSubmit={handleSubmit(submit)}>
       {/* user img :) */}
-
       <label className=" font-normal text-xs text-argent  ">rasm</label>
       <input
         {...register("img")}
@@ -59,7 +59,6 @@ const Regerter = () => {
           Rasmingizni https:// kurinishidagi manzilini kiriting
         </p>
       )}
-
       {/* user familiya :) */}
       <label className=" font-normal text-xs text-argent  ">Familiya</label>
       <input

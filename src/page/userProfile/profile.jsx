@@ -10,6 +10,7 @@ import Teligram from "../../assets/icons/teligram";
 import Insta from "../../assets/icons/insta";
 import Warning from "../../assets/icons/warning";
 import Button from "../../components/button/button";
+import SoatComponent from "../../components/soat";
 const Profile = () => {
   const user = loadState("user");
   if (!user) return <Navigate to={"/"} replace />;
@@ -69,7 +70,9 @@ const Profile = () => {
             <div className=" flex items-center gap-5 mt-[93px]">
               <div>
                 <p className=" mb-2 text-sm">Sizning hisobingiz: 0 so’m</p>
-                <p className=" text-sm">Mavjud bonuslar: 0 so’m</p>
+                <p className=" text-sm">
+                  Mavjud bonuslar: 0 so’m 
+                </p>
               </div>
               <Warning />
               <div className=" flex items-center gap-4">
