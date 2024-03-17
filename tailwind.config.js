@@ -19,6 +19,7 @@ export default {
       white: " #ffffff",
       shutterGrey: "#797d7e",
       placebo: "#e7e7e7",
+      blue: " #4aaafe",
     },
   },
   plugins: [],

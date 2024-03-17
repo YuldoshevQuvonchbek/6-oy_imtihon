@@ -42,3 +42,7 @@ body {
   color: black;
   border-bottom: 4px solid black;
 }
+
+.catalog > .active {
+  border-bottom: 2px solid red;
+}

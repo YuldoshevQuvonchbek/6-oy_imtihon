@@ -5,11 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { Useregester } from "./servese/mutation/useregester";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "../../components/button/button";
+const img = (url) => /\.(jpeg|jpg|gif|png|svg)$/i.test(url);
 
 const schema = z.object({
   email: z.string().email(),
-  name: z.string().max(10),
+  name: z.string().min(10),
   password: z.string().min(8),
+  surname: z.string().min(3),
+  img: z
+    .string()
+    .url()
+    .refine((url) => img(url), {
+      message:
+        "Invalid image URL. Please provide a URL ending with .jpeg, .jpg, .gif, .png, or .svg",
+    }),
 });
 
 const Regerter = () => {
@@ -27,52 +37,88 @@ const Regerter = () => {
     mutate(data, {
       onSuccess: (data) => {
         saveState("user", data);
-        naviget("/");
         reset();
+        naviget("/");
       },
     });
   };
 
   return (
     <form onSubmit={handleSubmit(submit)}>
+      {/* user img :) */}
+
+      <label className=" font-normal text-xs text-argent  ">rasm</label>
       <input
-        {...register("name")}
-        placeholder="Name"
-        className=" border-vegan rounded-lg w-full border mb-4 p-2"
+        {...register("img")}
+        placeholder="https://"
+        className=" border-vegan mt-2 rounded-lg w-full border mb-4 p-2"
         type="text"
       />
-      {errors.name && (
-        <p className=" font-Roboto   font-light text-[12px] text-red-500">
-          Familiya min 3 ta harf bo'lishi kerak
+      {errors.img && (
+        <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
+          Rasmingizni https:// kurinishidagi manzilini kiriting
         </p>
       )}
 
+      {/* user familiya :) */}
+      <label className=" font-normal text-xs text-argent  ">Familiya</label>
       <input
-        {...register("email")}
-        placeholder="Email"
-        className=" border-vegan rounded-lg w-full border mb-4 p-2"
+        {...register("surname")}
+        placeholder="Familiya"
+        className=" border-vegan mt-2 rounded-lg w-full border mb-4 p-2"
         type="text"
       />
-      {errors.email && (
-        <p className=" font-Roboto   font-light text-[12px] text-red-500">
+      {errors.surname && (
+        <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
           Familiya min 3 ta harf bo'lishi kerak
         </p>
       )}
+      {/*User ism :) */}
+      <label className=" font-normal text-xs text-argent  ">Ism</label>
+      <input
+        {...register("name")}
+        placeholder="Ism"
+        className=" border-vegan mt-2 rounded-lg w-full border mb-4 p-2"
+        type="text"
+      />
+      {errors.name && (
+        <p className=" text-vivaldiRed   font-light text-[12px] text-red-500">
+          Ism 2 ta harfdan ko'p bo'lishi kerak
+        </p>
+      )}
+      {/* user Email :) */}
+      <label className=" font-normal text-xs text-argent  ">Email</label>
+      <input
+        {...register("email")}
+        placeholder="Email"
+        className=" border-vegan mt-2 rounded-lg w-full border mb-4 p-2"
+        type="text"
+      />
+      {errors.email && (
+        <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
+          Email hato kirittinggiz
+        </p>
+      )}
+      {/* user password :) */}
+      <label className=" font-normal text-xs text-argent  ">Password</label>
       <input
         {...register("password")}
         placeholder="Password"
-        className=" border-vegan  rounded-lg w-full border p-2"
+        className=" border-vegan  mt-2 rounded-lg w-full border p-2"
         name="password"
         type="password"
       />
       {errors.password && (
-        <p className=" font-Roboto   font-light text-[12px] text-red-500">
-          Familiya min 3 ta harf bo'lishi kerak
+        <p className="  text-vivaldiRed  font-light text-[12px] text-red-500">
+          Password hato !!
         </p>
       )}
-      <button className=" pt-2 pb-2 w-full border " type="submit">
-        Submit
-      </button>
+      {/* submit btn :) */}
+      <Button
+        variant={"register"}
+        children={"Ro’yhatdan o’tish"}
+        type={"submit"}
+      />
     </form>
   );
 };

@@ -16,7 +16,7 @@ const UserLeyaut = () => {
             to="/users/regerter"
             className="text-argent px-[51px]   pb-[10px] text-base font-bold"
           >
-            Ro’yxatdan o’tish{" "}
+            Ro’yxatdan o’tish
           </NavLink>
         </div>
         <div>

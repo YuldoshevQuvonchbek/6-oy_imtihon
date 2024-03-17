@@ -5,16 +5,18 @@ import { usePostProducts } from "./servese/mutation/usePostProducts";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 const CreateProduct = () => {
+  const notify = () => toast.success("Malumot saqlandi");
   const naviget = useNavigate();
   const { data } = useGetTodo();
-  console.log(data);
   const { register, handleSubmit, reset } = useForm();
   const [product, setProduct] = React.useState("");
   const submit = (data) => {
     mutate(data, {
       onSuccess: (data) => {
-        naviget("/");
         reset();
       },
     });
@@ -36,7 +38,7 @@ const CreateProduct = () => {
                   Sarlavha kiriting
                 </label>
                 <input
-                  {...register("model")}
+                  {...register("title")}
                   className=" pl-4 py-[14px] rounded-md bg-Secondary"
                   placeholder="Masalan iphone 13 Pro Max"
                   type="text"
@@ -47,8 +49,11 @@ const CreateProduct = () => {
                   onChange={(e) => setProduct(e.target.value)}
                   className=" pl-4 py-[14px] rounded-md bg-Secondary"
                 >
+                  <option selected disabled value="Bo'limni tanlang">
+                    Bo'limni tanlang
+                  </option>
                   {data?.map((item) => (
-                    <option className="m-2" key={item.id} value={item.datakey}>
+                    <option className="mb-2" key={item.id} value={item.datakey}>
                       {item.name}
                     </option>
                   ))}
@@ -96,6 +101,13 @@ const CreateProduct = () => {
               Siz bilan bog’lanish uchun
             </h2>
             <div className=" flex flex-col">
+              <label className="text-xs text-argent mb-2">Narx</label>
+              <input
+                {...register("price")}
+                className=" pl-4  mb-6 py-[14px] rounded-md bg-Secondary"
+                placeholder=""
+                type="text"
+              />
               <label className="text-xs text-argent mb-2">Joylashuv</label>
               <input
                 {...register("location")}
@@ -126,12 +138,15 @@ const CreateProduct = () => {
               />
             </div>
           </div>
-          <div className=" flex justify-end">
-            <Button
-              type={"submit"}
-              variant={"Secondary"}
-              children={"E’lon joylash"}
-            />
+          <div>
+            <div onClick={notify} className=" flex justify-end">
+              <Button
+                type={"submit"}
+                variant={"Secondary"}
+                children={"E’lon joylash"}
+              />
+            </div>
+            <ToastContainer />
           </div>
         </form>
       </div>
