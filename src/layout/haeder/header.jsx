@@ -6,10 +6,12 @@ import UserIcon from "../../assets/icons/UserIcon";
 import Button from "../../components/button/button";
 import { loadState } from "../../config/store";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const Navigate = useNavigate();
-
+  const { likeCount } = useSelector((state) => state.like);
+  console.log(likeCount);
   const user = loadState("user");
   if (
     (!user && window.location.pathname === "/profile") ||
@@ -26,9 +28,14 @@ export const Header = () => {
             <img className=" w-[93px]" src={img} alt="" />
           </Link>
           <div className=" flex items-center  gap-7">
-            <div className=" flex items-center  gap-2">
-              <LikeIcons />
-              <p className=" text-sm  font-medium">Yoqtirganlar</p>
+            <div className=" relative flex items-center  gap-2">
+              <Link to="/like">
+                <LikeIcons />
+              </Link>
+              <span className="absolute  text-sm bg-vivaldiRed text-white w-5 h-5 justify-center rounded-full flex items-center top-[-14px] right-[84px]">
+                {likeCount}
+              </span>
+              <p className="   font-medium">Yoqtirganlar</p>
             </div>
 
             {user ? (

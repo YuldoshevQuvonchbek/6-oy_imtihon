@@ -4,10 +4,11 @@ import { useGetTodo } from "./servese/query/useGetTodo";
 import Hero from "../../layout/hero/hero";
 import { useGetAllTodo } from "../../layout/haeder/servese/mutation/useGetTodo";
 import Card from "../../components/card/card";
+import LodingCrat from "../../components/loding/lodingCrat";
 
 const Home = () => {
   const [page, setPage] = React.useState(1);
-  const { data } = useGetTodo();
+  const { data, isLoading: cotigory } = useGetTodo();
   const { data: product, isLoading } = useGetAllTodo(page);
   let buttons = Array(product?.pageSize).fill(null);
   const changePage = (page) => {
@@ -21,14 +22,19 @@ const Home = () => {
       <div className=" container">
         <h2 className="text-2xl mb-6 font-bold">Kategoriyalar</h2>
         <div className=" flex gap-9 mb-14 flex-wrap">
-          {data?.map((item) => (
-            <CategoryCart
-              key={item.id}
-              img={item.img}
-              name={item.name}
-              datakey={item.datakey}
-            />
-          ))}
+          {cotigory ? (
+            <h1>Loding...</h1>
+          ) : (
+            data?.map((item) => (
+              <CategoryCart
+                key={item.id}
+                img={item.img}
+                name={item.name}
+                datakey={item.datakey}
+              />
+            ))
+          )}
+          {}
         </div>
       </div>
       <div className=" bg-Secondary pt-8">
@@ -36,7 +42,7 @@ const Home = () => {
           <h2 className="font-bold  text-2xl pb-6">Siz uchun maxsus</h2>
           <div className=" flex flex-wrap  pb-6 justify-between">
             {isLoading ? (
-              <p>loding...</p>
+              <h2>Loding...</h2>
             ) : (
               product?.data?.map((item) => (
                 <Card

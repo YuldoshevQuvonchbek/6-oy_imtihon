@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { loadState } from "../../config/store";
 import { Audio } from "react-loader-spinner";
 import img from "../../assets/img/lodinggif.svg";
+import { useGetsettinggs } from "./servese/query/useGetsettinggs";
+import { useUserGet } from "./servese/query/useUserGet";
 
 const CreateProduct = () => {
   const user = loadState("user");
@@ -17,6 +19,8 @@ const CreateProduct = () => {
   const notify = () => toast.success("Malumot saqlandi");
   const naviget = useNavigate();
   const { data } = useGetTodo();
+  const { data: data2 } = useGetsettinggs();
+
   const { register, handleSubmit, reset } = useForm();
   const [product, setProduct] = React.useState("");
   const submit = (data) => {
@@ -78,6 +82,7 @@ const CreateProduct = () => {
               </div>
             </div>
           </div>
+
           <div className=" w-full bg-white mb-6   rounded-lg p-8">
             <h2 className="text-xl mb-3 font-medium">
               Bizga e’loningiz haqida gapirib bering
@@ -98,6 +103,32 @@ const CreateProduct = () => {
                 placeholder="https://"
                 type="text"
               />
+            </div>
+          </div>
+          <div className=" w-full bg-white p-8 mb-6   rounded-lg">
+            <h2 className=" mb-7 text-xl font-medium">
+              Bizga e’loningiz haqida gapirib bering
+            </h2>
+            <div className=" w-full">
+              <div className=" flex flex-col">
+                <label className="text-xs mt-6 text-argent mb-2">
+                  Shaharlar
+                </label>
+                <select
+                  {...register("cities")}
+                  onChange={(e) => setProduct(e.target.value)}
+                  className=" pl-4 py-[14px] rounded-md bg-Secondary"
+                >
+                  <option selected disabled value="Bo'limni tanlang">
+                    Shaharni tanlang
+                  </option>
+                  {data2?.map((item) => (
+                    <option className="mb-2" key={item.id} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
           <div className=" w-full bg-white mb-6   rounded-lg p-8">

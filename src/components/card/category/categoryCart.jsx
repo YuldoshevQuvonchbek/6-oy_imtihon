@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const CategoryCart = ({ img, name, datakey }) => {
-
-
   return (
-    <div className="w-[84px] cursor-pointer justify-center text-center">
+    <div className="w-[84px]  cursor-pointer justify-center text-center">
       <div>
         <Link to={`product/${datakey}`}>
           <img
@@ -16,7 +13,7 @@ const CategoryCart = ({ img, name, datakey }) => {
           />
         </Link>
       </div>
-      <h2 className="font-normal text-sm">{name}</h2>
+      <h2 className="font-normal  text-sm">{name}</h2>
     </div>
   );
 };

@@ -15,6 +15,7 @@ import Messages from "./page/userProfile/components/messages";
 import Payment from "./page/userProfile/components/payment";
 import Settings from "./page/userProfile/components/settings";
 import PromoCode from "./page/userProfile/components/promoCode";
+import LikePage from "./page/likePage/likePage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="product/:category" element={<Category />} />
           <Route path=":category/:id" element={<ProductInfo />} />
           <Route path="CreateProduct" element={<CreateProduct />} />
+          <Route path="/like" element={<LikePage />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="announcements" element={<Announcements />} />
             <Route path="messages" element={<Messages />} />
