@@ -25,7 +25,7 @@ const schema = z.object({
 
 const Regerter = () => {
   const naviget = useNavigate();
-  const { mutate } = Useregester();
+  const { mutate, isPending } = Useregester();
   const {
     register,
     reset,
@@ -115,7 +115,7 @@ const Regerter = () => {
       {/* submit btn :) */}
       <Button
         variant={"register"}
-        children={"Ro’yhatdan o’tish"}
+        children={`${isPending ? "Loding..." : "Ro’yhatdan o’tish"}`}
         type={"submit"}
       />
     </form>

@@ -7,6 +7,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { loadState } from "../../config/store";
+import { Audio } from "react-loader-spinner";
+import img from "../../assets/img/lodinggif.svg";
 
 const CreateProduct = () => {
   const user = loadState("user");
@@ -36,7 +38,7 @@ const CreateProduct = () => {
     });
   };
 
-  const { mutate } = usePostProducts(product);
+  const { mutate, isPending } = usePostProducts(product);
   return (
     <div className=" bg-Secondary  py-12">
       <div className=" container">
@@ -172,12 +174,19 @@ const CreateProduct = () => {
             </div>
           </div>
           <div>
-            <div className=" flex justify-end">
+            <div className=" flex relative justify-end">
               <Button
                 type={"submit"}
                 variant={"Secondary"}
-                children={"E’lon joylash"}
+                children={`${isPending ? "Loding..." : "E’lon joylash"}`}
               />
+              {isPending ? (
+                <div className=" top-2 right-[140px] relative">
+                  <img className="w-9 h-9" src={img} alt="" />
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </form>

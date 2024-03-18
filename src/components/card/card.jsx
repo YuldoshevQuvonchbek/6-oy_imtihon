@@ -7,7 +7,6 @@ const Card = ({ img, title, price, location, category, id, time }) => {
     <div className="rounded-lg hover:transition  duration-500 hover: hover:hover:scale-105 hover:shadow-xl border-placebo p-1 border  w-[202px]">
       <div className=" mb-4">
         <Link to={`/${category}/${id}`}>
-          {" "}
           <img src={img} alt="img" />
         </Link>
       </div>

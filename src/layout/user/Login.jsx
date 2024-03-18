@@ -13,7 +13,7 @@ const schema = z.object({
 });
 
 const Login = () => {
-  const { mutate } = UseLogin();
+  const { mutate, isPending } = UseLogin();
   const naviget = useNavigate();
   const {
     register,
@@ -66,7 +66,7 @@ const Login = () => {
       {/* submit btn :) */}
       <Button
         variant={"register"}
-        children={"Ro’yhatdan o’tish"}
+        children={`${isPending ? "Loding..." : "Ro’yhatdan o’tish"}`}
         type={"submit"}
       />
     </form>

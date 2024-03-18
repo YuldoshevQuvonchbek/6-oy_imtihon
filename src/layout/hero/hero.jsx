@@ -12,7 +12,6 @@ const Hero = () => {
   const search = useDebounce(value);
   const { data } = useGetAllTodo(search);
   const { data: pradact } = useGetCatigory();
-  console.log(pradact);
 
   return (
     <>
