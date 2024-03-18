@@ -70,9 +70,7 @@ const Profile = () => {
             <div className=" flex items-center gap-5 mt-[93px]">
               <div>
                 <p className=" mb-2 text-sm">Sizning hisobingiz: 0 so’m</p>
-                <p className=" text-sm">
-                  Mavjud bonuslar: 0 so’m 
-                </p>
+                <p className=" text-sm">Mavjud bonuslar: 0 so’m</p>
               </div>
               <Warning />
               <div className=" flex items-center gap-4">
