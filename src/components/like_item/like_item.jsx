@@ -23,6 +23,7 @@ export const Like_item = ({
   console.log(title);
   return (
     <div className=" container">
+      <h1 className=" mt-3 font-bold text-2xl">Yoqgani</h1>
       <div className="  flex  flex-wrap gap-5 pb-9 py-12 ">
         <div className="rounded-lg hover:transition  duration-500 hover: hover:hover:scale-105 hover:shadow-xl border-placebo p-1 border  w-[202px]">
           <div className=" mb-4">
