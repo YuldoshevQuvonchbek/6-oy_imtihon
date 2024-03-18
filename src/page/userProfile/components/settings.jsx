@@ -63,8 +63,12 @@ const Settings = () => {
             <>
               <Popover.Button
                 className={`
-                ${open ? "text-white mb-[200%]" : "text-white/90  mb-5 "}
-                group inline-flex items-center transition hover:scale-110 hover:shadow-xl  duration-300 bg-Black rounded-md  px-3 py-2 text-base font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+                ${
+                  open
+                    ? "text-white mb-[200%] bg-Black"
+                    : " text-Black border bg-white  mb-5  "
+                }
+                group inline-flex items-center transition hover:bg-Black hover:text-white  hover:scale-110 hover:shadow-xl  duration-300 rounded-md  px-3 py-2 text-base font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
               >
                 shaxsiy malumotlarni uzgartirish
               </Popover.Button>

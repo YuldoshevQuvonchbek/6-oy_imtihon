@@ -25,7 +25,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="*" element={<Notfaunt />} />
           <Route path="product/:category" element={<Category />} />
-          <Route path="product/:category/:id" element={<ProductInfo />} />
+          <Route path=":category/:id" element={<ProductInfo />} />
           <Route path="CreateProduct" element={<CreateProduct />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="announcements" element={<Announcements />} />

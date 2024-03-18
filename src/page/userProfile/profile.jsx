@@ -10,7 +10,7 @@ import Teligram from "../../assets/icons/teligram";
 import Insta from "../../assets/icons/insta";
 import Warning from "../../assets/icons/warning";
 import Button from "../../components/button/button";
-import SoatComponent from "../../components/soat";
+
 const Profile = () => {
   const user = loadState("user");
   if (!user) return <Navigate to={"/"} replace />;

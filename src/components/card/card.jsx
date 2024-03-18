@@ -6,7 +6,7 @@ const Card = ({ img, title, price, location, category, id, time }) => {
   return (
     <div className="rounded-lg hover:transition  duration-500 hover: hover:hover:scale-105 hover:shadow-xl border-placebo p-1 border  w-[202px]">
       <div className=" mb-4">
-        <Link to={`/product/${category}/${id}`}>
+        <Link to={`/${category}/${id}`}>
           {" "}
           <img src={img} alt="img" />
         </Link>
@@ -16,9 +16,7 @@ const Card = ({ img, title, price, location, category, id, time }) => {
         <p className="text-xl font-bold mb-2 text-vivaldiRed">{price} UYE</p>
         <p className="text-sm text-argent font-normal mb-3">{location}</p>
         <div className=" flex  justify-between mb-[14px]  items-center">
-          <p className="text-sm text-argent font-normal ">
-            Bugun {time.length > 5 ? time.slice(0, 5) : time}
-          </p>
+          <p className="text-sm text-argent font-normal ">{time}</p>
           <div>
             <CartLike />
           </div>

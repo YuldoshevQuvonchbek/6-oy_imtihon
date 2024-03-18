@@ -3,45 +3,31 @@ import { useGetTodo } from "../home/servese/query/useGetTodo";
 import Button from "../../components/button/button";
 import { usePostProducts } from "./servese/mutation/usePostProducts";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import SoatComponent from "../../components/soat";
-
-const img = (url) => /\.(jpeg|jpg|gif|png|svg)$/i.test(url);
-
-const schema = z.object({
-  email: z.string().email(),
-  name: z.string().max(20),
-
-  surname: z.string().min(3),
-  img: z
-    .string()
-    .url()
-    .refine((url) => img(url), {
-      message:
-        "Invalid image URL. Please provide a URL ending with .jpeg, .jpg, .gif, .png, or .svg",
-    }),
-});
+import { loadState } from "../../config/store";
 
 const CreateProduct = () => {
+  const user = loadState("user");
+  if (!user) return <Navigate to={"/users/login"} replace />;
+
   const notify = () => toast.success("Malumot saqlandi");
   const naviget = useNavigate();
-
   const { data } = useGetTodo();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: zodResolver(schema),
-  });
+  const { register, handleSubmit, reset } = useForm();
   const [product, setProduct] = React.useState("");
   const submit = (data) => {
+    const currentDate = new Date();
+    const options = {
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    };
+    const formattedDate = currentDate.toLocaleString("ru", options);
+    data.time = formattedDate;
     mutate(data, {
       onSuccess: (data) => {
         reset();
@@ -49,9 +35,6 @@ const CreateProduct = () => {
       },
     });
   };
-  // time :)
-  const soat = SoatComponent();
-  const time = soat.props.children.props.children;
 
   const { mutate } = usePostProducts(product);
   return (
@@ -74,6 +57,7 @@ const CreateProduct = () => {
                   placeholder="Masalan iphone 13 Pro Max"
                   type="text"
                 />
+
                 <label className="text-xs mt-6 text-argent mb-2">Rukn</label>
                 <select
                   {...register("datakey")}
@@ -112,11 +96,6 @@ const CreateProduct = () => {
                 placeholder="https://"
                 type="text"
               />
-              {errors.img && (
-                <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
-                  Rasmingizni https:// kurinishidagi manzilini kiriting
-                </p>
-              )}
             </div>
           </div>
           <div className=" w-full bg-white mb-6   rounded-lg p-8">
@@ -154,6 +133,7 @@ const CreateProduct = () => {
                 placeholder=""
                 type="text"
               />
+
               {/* Ism :) */}
               <label className="text-xs text-argent mb-2">Ism</label>
               <input
@@ -162,11 +142,7 @@ const CreateProduct = () => {
                 placeholder="Ism"
                 type="text"
               />
-              {errors.name && (
-                <p className=" text-vivaldiRed   font-light text-[12px] text-red-500">
-                  Ism 2 ta harfdan ko'p bo'lishi kerak
-                </p>
-              )}
+
               {/* Familiya :) */}
               <label className="text-xs text-argent mb-2">Familiya</label>
               <input
@@ -175,11 +151,7 @@ const CreateProduct = () => {
                 placeholder="familiya"
                 type="text"
               />
-              {errors.surname && (
-                <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
-                  Familiya min 3 ta harf bo'lishi kerak
-                </p>
-              )}
+
               {/* Email */}
               <label className="text-xs text-argent mb-2">Email-manzil</label>
               <input
@@ -188,11 +160,7 @@ const CreateProduct = () => {
                 placeholder=""
                 type="text"
               />
-              {errors.email && (
-                <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
-                  Email hato kirittinggiz
-                </p>
-              )}
+
               {/*Telefon raqami :)  */}
               <label className="text-xs text-argent mb-2">Telefon raqami</label>
               <input
@@ -201,21 +169,6 @@ const CreateProduct = () => {
                 placeholder="Telifon raqam"
                 type="tel"
               />
-              {errors.phone && (
-                <p className="  text-vivaldiRed   font-light text-[12px] text-red-500">
-                  Email hato kirittinggiz
-                </p>
-              )}
-              <div className=" absolute left-[-1800px] ">
-                <label className="text-xs text-argent mb-2">Vaq</label>
-                <input
-                  {...register("time")}
-                  value={time}
-                  className=" pl-4 mb-6 py-[14px] rounded-md bg-Secondary"
-                  placeholder=""
-                  type="text"
-                />
-              </div>
             </div>
           </div>
           <div>

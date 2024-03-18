@@ -13,10 +13,12 @@ import img2 from "../../assets/img/acsiyaImg.png";
 import TelIcon from "../../assets/icons/telIcon";
 import AttachmentIcon from "../../assets/icons/attachmentIcon";
 import Button from "../../components/button/button";
+import { loadState } from "../../config/store";
 
 const ProductInfo = () => {
   const { id, category } = useParams();
   const { data } = useGetALLPadact(category, id);
+  const user = loadState("user");
 
   return (
     <div>
@@ -55,7 +57,12 @@ const ProductInfo = () => {
               {/* product title :) */}
               <div className=" w-[711px] pt-6 bg-white rounded-md mt-8    pl-8 pr-8 pb-8">
                 <div className=" flex justify-between mb-4">
-                  <p>Joylashtirildi bugun 21:22</p>
+                  <p>
+                    Joylashtirildi{" "}
+                    <span className="text-base font-semibold">
+                      {data?.time}
+                    </span>
+                  </p>
                   <LikeIcons />
                 </div>
                 <div className=" flex items-center mb-4 gap-5">
@@ -111,7 +118,7 @@ const ProductInfo = () => {
                     <div className="  w-10 h-10 bg-argent rounded-full"></div>
                     <div>
                       <p className=" font-semibold mb-1  text-2xl">
-                        Akromova Umida
+                        {data?.name} {data?.surname}
                       </p>
                       <p className=" mb-2"> Ro’yxatdan o’tgan sanasi 2020</p>
 
@@ -121,7 +128,7 @@ const ProductInfo = () => {
                   <div className=" flex items-center gap-5">
                     <div className=" flex items-center gap-3 ">
                       <TelIcon />
-                      <p>xxx xxx xxx</p>
+                      <p>{data?.nummer}</p>
                     </div>
                     <span className=" rounded border-argent py-0.5 pb-0.5 border pl-3 pr-3">
                       Ko'rsatish
@@ -154,10 +161,16 @@ const ProductInfo = () => {
                 <h2 className=" text-xl font-medium mb-7">Foydalanuvchi</h2>
                 <div>
                   <div className=" flex  gap-4">
-                    <div className="  w-10 h-10 bg-argent rounded-full"></div>
+                    <div className="   rounded-full">
+                      <img
+                        className=" w-10 h-10 rounded-full"
+                        src={data?.img}
+                        alt=""
+                      />
+                    </div>
                     <div>
                       <p className=" font-semibold mb-1  text-2xl">
-                        Akromova Umida
+                        {data?.name} {data?.surname}
                       </p>
                       <p className=" mb-2"> Ro’yxatdan o’tgan sanasi 2020</p>
 
