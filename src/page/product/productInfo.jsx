@@ -14,10 +14,13 @@ import TelIcon from "../../assets/icons/telIcon";
 import AttachmentIcon from "../../assets/icons/attachmentIcon";
 import Button from "../../components/button/button";
 import { loadState } from "../../config/store";
+import { useGetAllTodo } from "../../layout/haeder/servese/mutation/useGetTodo";
+import Card from "../../components/card/card";
 
 const ProductInfo = () => {
   const { id, category } = useParams();
   const { data } = useGetALLPadact(category, id);
+  const { data: product, isLoading } = useGetAllTodo();
   const user = loadState("user");
 
   return (
@@ -210,6 +213,54 @@ const ProductInfo = () => {
                   <img className="w-[375px]" src={img2} alt="" />
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className=" container">
+          <div>
+            <h2 className=" pt-10 pb-6 text-2xl font-bold">
+              Muallifning boshqa e’lonlari
+            </h2>
+            <div className=" flex flex-wrap  pb-6 justify-between">
+              {isLoading ? (
+                <h2>Loding...</h2>
+              ) : (
+                product?.data?.map((item) => (
+                  <Card
+                    id={item.id}
+                    category={item.datakey}
+                    key={item.id}
+                    img={item.img}
+                    title={item.title}
+                    price={item.price}
+                    location={item.location}
+                    time={item.time}
+                  />
+                ))
+              )}
+            </div>
+          </div>
+          <div className=" pb-16">
+            <h2 className=" pt-10 pb-6 text-2xl font-bold">
+              O’xshash e’lonlar
+            </h2>
+            <div className=" flex flex-wrap  pb-6 justify-between">
+              {isLoading ? (
+                <h2>Loding...</h2>
+              ) : (
+                product?.data?.map((item) => (
+                  <Card
+                    id={item.id}
+                    category={item.datakey}
+                    key={item.id}
+                    img={item.img}
+                    title={item.title}
+                    price={item.price}
+                    location={item.location}
+                    time={item.time}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
