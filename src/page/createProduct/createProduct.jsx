@@ -20,9 +20,10 @@ const CreateProduct = () => {
   const naviget = useNavigate();
   const { data } = useGetTodo();
   const { data: data2 } = useGetsettinggs();
-
   const { register, handleSubmit, reset } = useForm();
   const [product, setProduct] = React.useState("");
+  const [lokation, setLokation] = React.useState("");
+
   const submit = (data) => {
     const currentDate = new Date();
     const options = {
@@ -42,7 +43,7 @@ const CreateProduct = () => {
     });
   };
 
-  const { mutate, isPending } = usePostProducts(product);
+  const { mutate, isPending } = usePostProducts(product, lokation);
   return (
     <div className=" bg-Secondary  py-12">
       <div className=" container">
@@ -116,7 +117,7 @@ const CreateProduct = () => {
                 </label>
                 <select
                   {...register("cities")}
-                  onChange={(e) => setProduct(e.target.value)}
+                  onChange={(e) => setLokation(e.target.value)}
                   className=" pl-4 py-[14px] rounded-md bg-Secondary"
                 >
                   <option selected disabled value="Bo'limni tanlang">

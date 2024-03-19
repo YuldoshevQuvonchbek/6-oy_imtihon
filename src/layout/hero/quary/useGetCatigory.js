@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { request } from "../../../config/request";
 
-export const useGetCatigory = () => {
+export const useGetCatigory = (search = "") => {
   return useQuery({
-    queryKey: ["all"],
-    queryFn: () => request.get("/all").then((res) => res.data),
+    queryKey: ["all", search],
+    queryFn: () =>
+      request
+        .get("/all", { params: { title_like: search } })
+        .then((res) => res.data),
   });
 };

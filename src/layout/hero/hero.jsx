@@ -10,9 +10,8 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   const [value, setValue] = React.useState("");
   const search = useDebounce(value);
-  const { data } = useGetAllTodo(search);
-  const { data: pradact } = useGetCatigory();
-
+  const { data } = useGetAllTodo();
+  const { data: pradact } = useGetCatigory(search);
   return (
     <>
       {/*  */}
